@@ -7,48 +7,20 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bit-violet: #8B3DFF;
-            --bit-orange: #FFB142;
-            --bit-dark: #121826;
-        }
-        
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #ffffff;
-            color: var(--bit-dark);
-            scroll-behavior: smooth;
-        }
-
+        :root { --bit-violet: #8B3DFF; --bit-orange: #FFB142; --bit-dark: #121826; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #ffffff; color: var(--bit-dark); scroll-behavior: smooth; }
         .font-brand { font-weight: 800; letter-spacing: -0.05em; }
-
+        
         /* Ajuste de título para móviles */
-        .hero-title {
-            font-size: clamp(2.5rem, 10vw, 110px);
-            line-height: 1.1;
-            word-break: break-word;
-        }
+        .hero-title { font-size: clamp(2.2rem, 9vw, 110px); line-height: 1.1; }
 
-        .btn-main {
-            background-color: var(--bit-violet);
-            border-radius: 20px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        /* MODAL STYLES RESPONSIVE */
+        .btn-main { background-color: var(--bit-violet); border-radius: 20px; transition: all 0.4s ease; }
+        
+        /* MODAL */
         .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(18, 24, 38, 0.9);
-            backdrop-filter: blur(15px);
-            z-index: 100;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(18, 24, 38, 0.9); backdrop-filter: blur(15px); z-index: 100;
+            justify-content: center; align-items: center; padding: 20px;
         }
         .modal-overlay.active { display: flex; }
     </style>
@@ -56,58 +28,49 @@
 <body class="antialiased">
 
     <div id="modalLogin" class="modal-overlay" onclick="cerrarModal(event)">
-        <div class="bg-white p-8 md:p-12 rounded-[30px] md:rounded-[50px] shadow-2xl border border-slate-100 text-center max-w-md w-full" onclick="event.stopPropagation()">
-            <span class="text-bit-violet font-black text-[10px] tracking-[0.5em] uppercase mb-2 block">Portal Educativo</span>
-            <h3 class="text-3xl md:text-5xl font-brand mb-6 md:mb-10 uppercase tracking-tighter">¡Bienvenido!</h3>
-            
+        <div class="bg-white p-8 rounded-[40px] shadow-2xl text-center max-w-md w-full" onclick="event.stopPropagation()">
+            <h3 class="text-3xl font-brand mb-6 uppercase tracking-tighter">¡Bienvenido!</h3>
             <div class="space-y-3">
-                <input type="text" placeholder="Usuario" class="w-full px-5 py-4 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-bit-violet font-semibold text-slate-700">
-                <input type="password" placeholder="Contraseña" class="w-full px-5 py-4 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-bit-violet font-semibold text-slate-700">
-                
+                <input type="text" placeholder="Usuario" class="w-full px-5 py-4 rounded-xl bg-slate-50 border border-slate-200">
+                <input type="password" placeholder="Contraseña" class="w-full px-5 py-4 rounded-xl bg-slate-50 border border-slate-200">
+                <button onclick="mostrarError()" class="w-full bg-[#3D44FF] text-white py-5 rounded-xl font-black uppercase text-[10px] tracking-widest mt-4">Ingresar al Panel</button>
                 <p id="error-msg" class="text-red-500 text-[10px] font-black uppercase hidden pt-2 italic">⚠️ Datos incorrectos.</p>
-                
-                <button onclick="mostrarError()" class="w-full bg-[#3D44FF] text-white py-5 rounded-xl font-black uppercase tracking-widest text-[10px] shadow-xl hover:bg-blue-700 transition-all mt-4">Ingresar al Panel</button>
-                
-                <div class="pt-6">
-                    <button onclick="contactar()" class="text-bit-violet font-black text-[10px] uppercase underline decoration-2 underline-offset-4">Soporte por WhatsApp</button>
-                </div>
+                <button onclick="contactar()" class="text-bit-violet font-black text-[10px] uppercase underline mt-4">Soporte por WhatsApp</button>
             </div>
-            <button onclick="toggleModal()" class="mt-8 text-slate-300 text-[10px] font-bold uppercase tracking-widest">Cerrar</button>
+            <button onclick="toggleModal()" class="mt-8 text-slate-300 text-[10px] font-bold uppercase">Cerrar</button>
         </div>
     </div>
 
-    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-xl border-b border-slate-50 px-4 md:px-8 py-2">
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-xl border-b border-slate-50 px-4 py-3">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center">
-                <div class="text-2xl md:text-4xl font-brand italic">Bit<span class="text-[#8B3DFF]">Digital</span></div>
-            </div>
-            <div class="flex items-center space-x-2 md:space-x-6">
-                <button onclick="toggleModal()" class="text-[9px] md:text-[11px] font-extrabold uppercase tracking-widest text-bit-violet border-2 border-bit-violet px-3 py-2 md:px-6 md:py-3 rounded-full hover:bg-bit-violet hover:text-white transition-all">Alumnos</button>
-                <button onclick="contactar()" class="hidden md:block btn-main text-white px-8 py-4 text-[11px] font-extrabold uppercase tracking-widest">Asesoría</button>
+            <div class="text-xl md:text-4xl font-brand italic">Bit<span class="text-[#8B3DFF]">Digital</span></div>
+            <div class="flex items-center gap-2 md:gap-4">
+                <button onclick="toggleModal()" class="text-[9px] md:text-[11px] font-extrabold uppercase tracking-widest text-bit-violet border-2 border-bit-violet px-3 py-2 md:px-6 md:py-3 rounded-full">Alumnos</button>
+                <button onclick="contactar()" class="btn-main text-white px-4 py-2 md:px-8 md:py-4 text-[9px] md:text-[11px] font-extrabold uppercase tracking-widest">Asesoría</button>
             </div>
         </div>
     </nav>
 
-    <main class="pt-32 md:pt-[450px] pb-20 px-6">
-        <div class="max-w-6xl mx-auto text-center relative">
-            <div class="inline-flex items-center gap-2 bg-slate-50 px-4 py-2 md:px-8 md:py-4 rounded-full mb-8 md:mb-16 border border-slate-100">
-                <span class="text-[9px] md:text-[12px] font-extrabold uppercase tracking-[0.2em] text-slate-400 text-center">Consultoría Técnica Profesional</span>
+    <main class="pt-24 md:pt-48 pb-20 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 bg-slate-50 px-6 py-3 rounded-full mb-8 border border-slate-100">
+                <span class="text-[9px] md:text-[12px] font-extrabold uppercase tracking-widest text-slate-400">Consultoría Técnica Profesional</span>
             </div>
-            <h1 class="hero-title font-brand text-[#121826] tracking-tighter">
+            <h1 class="hero-title font-brand text-[#121826] tracking-tighter mb-8">
                 Educación <span class="text-[#FFB142]">Financiera</span><br>
                 <span class="text-[#8B3DFF]">con enfoque</span><br>
                 Profesional.
             </h1>
-            <p class="text-slate-500 text-lg md:text-[28px] max-w-5xl mx-auto mt-10 md:mt-20 mb-12 md:mb-24 font-medium leading-relaxed">
+            <p class="text-slate-500 text-lg md:text-2xl max-w-3xl mx-auto mb-12 font-medium">
                 Mentoría 1 a 1 para el dominio de mercados globales.
             </p>
-            <button onclick="contactar()" class="btn-main text-white px-8 py-5 md:px-16 md:py-8 text-xl md:text-3xl font-extrabold tracking-tight w-full md:w-auto uppercase shadow-2xl">
+            <button onclick="contactar()" class="btn-main text-white px-10 py-6 text-xl md:text-2xl font-extrabold w-full md:w-auto uppercase shadow-xl">
                 Contratar Asesoría
             </button>
         </div>
     </main>
 
-    <footer class="py-12 bg-[#121826] text-center px-6">
+    <footer class="py-10 bg-[#121826] text-center px-6">
         <p class="text-slate-500 text-[9px] font-black uppercase tracking-[0.5em] mb-4">BitDigital · 2026</p>
         <p class="text-slate-500 text-[10px] uppercase font-medium max-w-2xl mx-auto">
             <span class="text-white font-bold">Aviso Legal:</span> Contenido educativo, no es recomendación de inversión.
@@ -116,10 +79,7 @@
 
     <script>
         function contactar() { window.open("https://wa.me/5492644703321", '_blank'); }
-        function toggleModal() { 
-            const m = document.getElementById('modalLogin');
-            m.classList.toggle('active');
-        }
+        function toggleModal() { document.getElementById('modalLogin').classList.toggle('active'); }
         function cerrarModal(e) { if(e.target.id === 'modalLogin') toggleModal(); }
         function mostrarError() { document.getElementById('error-msg').classList.remove('hidden'); }
     </script>
