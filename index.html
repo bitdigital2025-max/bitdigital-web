@@ -10,13 +10,11 @@
         :root { --bit-violet: #8B3DFF; --bit-orange: #FFB142; --bit-dark: #121826; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #ffffff; color: var(--bit-dark); scroll-behavior: smooth; }
         .font-brand { font-weight: 800; letter-spacing: -0.05em; }
-        
-        /* Ajuste de título para móviles */
         .hero-title { font-size: clamp(2.2rem, 9vw, 110px); line-height: 1.1; }
-
         .btn-main { background-color: var(--bit-violet); border-radius: 20px; transition: all 0.4s ease; }
+        .card-interactive { transition: all 0.4s ease; }
+        .card-interactive:hover { transform: translateY(-10px); }
         
-        /* MODAL */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(18, 24, 38, 0.9); backdrop-filter: blur(15px); z-index: 100;
@@ -44,7 +42,7 @@
     <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-xl border-b border-slate-50 px-4 py-3">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="text-xl md:text-4xl font-brand italic">Bit<span class="text-[#8B3DFF]">Digital</span></div>
-            <div class="flex items-center gap-2 md:gap-4">
+            <div class="flex items-center gap-2">
                 <button onclick="toggleModal()" class="text-[9px] md:text-[11px] font-extrabold uppercase tracking-widest text-bit-violet border-2 border-bit-violet px-3 py-2 md:px-6 md:py-3 rounded-full">Alumnos</button>
                 <button onclick="contactar()" class="btn-main text-white px-4 py-2 md:px-8 md:py-4 text-[9px] md:text-[11px] font-extrabold uppercase tracking-widest">Asesoría</button>
             </div>
@@ -61,19 +59,61 @@
                 <span class="text-[#8B3DFF]">con enfoque</span><br>
                 Profesional.
             </h1>
-            <p class="text-slate-500 text-lg md:text-2xl max-w-3xl mx-auto mb-12 font-medium">
-                Mentoría 1 a 1 para el dominio de mercados globales.
-            </p>
-            <button onclick="contactar()" class="btn-main text-white px-10 py-6 text-xl md:text-2xl font-extrabold w-full md:w-auto uppercase shadow-xl">
-                Contratar Asesoría
-            </button>
+            <p class="text-slate-500 text-lg md:text-2xl max-w-3xl mx-auto mb-12 font-medium">Mentoría 1 a 1 para el dominio de mercados globales.</p>
+            <button onclick="contactar()" class="btn-main text-white px-10 py-6 text-xl md:text-2xl font-extrabold w-full md:w-auto uppercase shadow-xl">Contratar Asesoría</button>
         </div>
     </main>
 
-    <footer class="py-10 bg-[#121826] text-center px-6">
+    <section id="trading" class="py-20 bg-[#FFB142] text-[#121826]">
+        <div class="max-w-7xl mx-auto px-6">
+            <span class="font-black text-[10px] tracking-widest uppercase">Estrategia Institucional</span>
+            <h2 class="text-4xl md:text-7xl font-brand mb-12 uppercase">Domina el Trading Real.</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white/10 p-8 rounded-[30px] border border-black/5">
+                    <h4 class="text-xl font-brand mb-4 uppercase">Lectura del Precio</h4>
+                    <p class="font-medium opacity-80">Domina velas japonesas, estructuras de mercado y tendencias reales.</p>
+                </div>
+                <div class="bg-white/10 p-8 rounded-[30px] border border-black/5">
+                    <h4 class="text-xl font-brand mb-4 uppercase">Psicología y Gestión</h4>
+                    <p class="font-medium opacity-80">Gestión de riesgo profesional y stop loss correcto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="crypto" class="py-20 bg-[#8B3DFF] text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <span class="font-black text-[10px] tracking-widest uppercase text-white/60">Ecosistema Web3</span>
+            <h2 class="text-4xl md:text-7xl font-brand mb-12 uppercase">Explora el Universo Cripto.</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white/10 p-8 rounded-[30px] border border-white/10">
+                    <h4 class="text-xl font-brand mb-4 uppercase">Fundamentos</h4>
+                    <p class="font-medium text-white/80 text-sm">Aprende sobre Bitcoin, wallets y seguridad de activos.</p>
+                </div>
+                <div class="bg-white/10 p-8 rounded-[30px] border border-white/10">
+                    <h4 class="text-xl font-brand mb-4 uppercase">Análisis e Inversión</h4>
+                    <p class="font-medium text-white/80 text-sm">Finanzas Descentralizadas (DeFi), ciclos y el Halving.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="metodologia" class="py-20 bg-[#121826] text-white">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-6xl font-brand mb-12 uppercase">Metodología <span class="text-bit-orange">Elite.</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="p-6 bg-[#FFB142] text-[#121826] rounded-[30px]"><h4 class="font-brand text-sm">A TU RITMO</h4></div>
+                <div class="p-6 bg-[#FFB142] text-[#121826] rounded-[30px]"><h4 class="font-brand text-sm">ON DEMAND</h4></div>
+                <div class="p-6 bg-[#FFB142] text-[#121826] rounded-[30px]"><h4 class="font-brand text-sm">100% ONLINE</h4></div>
+                <div class="p-6 bg-[#FFB142] text-[#121826] rounded-[30px]"><h4 class="font-brand text-sm">APOYO DIARIO</h4></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-10 bg-[#121826] text-center px-6 border-t border-white/5">
         <p class="text-slate-500 text-[9px] font-black uppercase tracking-[0.5em] mb-4">BitDigital · 2026</p>
-        <p class="text-slate-500 text-[10px] uppercase font-medium max-w-2xl mx-auto">
-            <span class="text-white font-bold">Aviso Legal:</span> Contenido educativo, no es recomendación de inversión.
+        <p class="text-slate-500 text-[10px] uppercase font-medium max-w-2xl mx-auto leading-relaxed">
+            <span class="text-white font-bold">Aviso Legal:</span> BitDigital es una academia dedicada exclusivamente a la asesoría técnico-educativa. El contenido es con fines <span class="text-bit-orange">educativos</span> y no es recomendación de inversión.
         </p>
     </footer>
 
